@@ -17,18 +17,28 @@ form.addEventListener("submit", function (event) {
 });
 
 function showSongs(data) {
-  const ulElement = document.createElement("ul");
-  ulElement.className = "songs";
+  result.innerHTML = ""
 
   data.forEach(function (song) {
     const title = song.title;
     const artistName = song.artist.name;
+    const albumCover = song.album.cover_big;
 
-    const liElement = document.createElement("li");
-    liElement.innerText = artistName + " - " + title;
+    const divElement = document.createElement("div");
+    const imageElement = document.createElement("img");
+    const titleElement = document.createElement("h2");
+    const artistElement = document.createElement("p");
 
-    ulElement.append(liElement);
+    imageElement.src = albumCover;
+    titleElement.innerText = title;
+    artistElement.innerText = artistName;
+
+    divElement.append(imageElement);
+    divElement.append(titleElement);
+    divElement.append(artistElement);
+
+    divElement.className = "song-card";
+
+    result.append(divElement);
   });
-
-  result.append(ulElement);
 }
